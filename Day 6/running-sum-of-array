@@ -1,0 +1,22 @@
+class Solution {
+private:
+    void add(vector<int>& nums, vector<int>& ans, int sum, int index, int n)
+    {
+        if(index == n )
+        {
+            return;
+        }
+        sum+=nums[index];
+        ans.push_back(sum);
+        add(nums,ans, sum, index+1, n);
+    }
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        vector<int> ans;
+        int sum = 0;
+        int index = 0;
+        // int index = 0;
+        add(nums, ans, sum, index, nums.size());
+        return ans;
+    }
+};
