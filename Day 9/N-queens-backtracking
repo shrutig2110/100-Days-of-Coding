@@ -1,0 +1,41 @@
+class Solution {
+private:
+     vector<vector<string>> ans;
+    bool is_safe(int i,int j,vector<string> &temp){            
+        // col check
+        for(int k=i-1;k>=0;k--){
+            if(temp[k][j] == 'Q') return false;
+        }
+        
+        // left - diag check
+        for(int row=i-1,col=j-1;row>=0 and col >= 0;row--,col--){
+            if(temp[row][col] == 'Q') return false;
+        }
+        
+        // right - diag check
+        for(int row=i-1,col=j+1;row>=0 and col < temp.size();row--,col++){
+            if(temp[row][col] == 'Q') return false;
+        }
+        
+        return true;
+    }
+    bool solve(int i,int n,vector<string> &temp){
+        if(i == n) return true;
+        
+        for(int j=0;j<n;j++){
+            if(!is_safe(i,j,temp)) continue;
+            temp[i][j] = 'Q';
+            if(solve(i+1,n,temp)) ans.push_back(temp);
+            temp[i][j] = '.';
+        }
+        
+        return false;
+    }
+public:
+      vector<vector<string>> solveNQueens(int n) {
+        vector<string> temp(n);
+        fill(temp.begin(),temp.end(),string(n,'.'));
+        solve(0,n,temp);
+        return ans;
+    }
+};
