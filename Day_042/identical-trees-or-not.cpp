@@ -2,7 +2,7 @@
 class Solution
 {
     public:
-    //Function to check if two trees are identical.
+    //Traverse both the trees in same direction and check each node
     bool isIdentical(Node *r1, Node *r2)
     {
         if(r1 == NULL && r2==NULL)
