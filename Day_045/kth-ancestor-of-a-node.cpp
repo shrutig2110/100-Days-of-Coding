@@ -83,7 +83,7 @@ Node* find(Node *root, int &k , int node)
 int kthAncestor(Node *root, int k, int node)
 {
     Node* ans=find(root, k , node);
-    if(ans == NULL)
+    if(ans == NULL || ans->data == node)
     {
         return -1;
     }
